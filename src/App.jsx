@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import SearchBar from "./components/SearchBar";
 import AlbumGrid from "./components/AlbumGrid";
+import ArtistInfo from "./components/ArtistInfo";
 
 const clientId = import.meta.env.VITE_CLIENT_ID;
 const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
@@ -10,6 +11,7 @@ const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
 function App() {
   const [searchInput, setSearchInput] = useState("");
   const [accessToken, setAccessToken] = useState("");
+  const [artistInfo, setArtistInfo] = useState("");
   const [albums, setAlbums] = useState([]);
 
   useEffect(() => {

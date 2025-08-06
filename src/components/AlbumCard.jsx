@@ -5,7 +5,7 @@ export default function AlbumCard({ album }) {
     <Card
       key={album.id}
       style={{
-        backgroundColor: "grey",
+        backgroundColor: "white",
         margin: "10px",
         borderRadius: "5px",
         marginBottom: "30px",
