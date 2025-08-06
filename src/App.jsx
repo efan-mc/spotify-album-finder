@@ -44,14 +44,17 @@ function App() {
     };
 
     // Get Artist
-    const artistID = await fetch(
+    const artistData = await fetch(
       "https://api.spotify.com/v1/search?q=" + searchInput + "&type=artist",
       artistParams
     )
       .then((result) => result.json())
       .then((data) => {
-        return data.artists.items[0].id;
+        return data.artists.items[0];
       });
+
+    setArtistInfo(artistData);
+    const artistID = artistData.id;
 
     // Get Artist Albums
     await fetch(
@@ -76,6 +79,7 @@ function App() {
         />
       </Container>
       <Container>
+        <ArtistInfo artist={artistInfo} />
         <AlbumGrid albums={albums} />
       </Container>
     </>
