@@ -59,14 +59,15 @@ function App() {
 
     // Get Top Tracks
     const topTracks = await fetch(
-      `https://api.spotify.com/v1/artists/${artistID}/top-tracks?market=US`,
+      `https://api.spotify.com/v1/artists/${artistID}/top-tracks?country=US`,
       artistParams
     ).then((result) => result.json());
 
     console.log(topTracks.tracks);
 
     if (topTracks.tracks.length > 0) {
-      setPreviewUrl(topTracks.tracks[0].preview_url);
+      const withPreview = topTracks.tracks.find((t) => t.preview_url);
+      setPreviewUrl(withPreview ? withPreview.preview_url : "");
     }
 
     // Get Artist Albums

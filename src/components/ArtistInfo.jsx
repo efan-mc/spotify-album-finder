@@ -53,10 +53,11 @@ export default function ArtistInfo({ artist, previewUrl }) {
           {artist.genres}
         </Card.Text>
 
-        <audio controls style={{ marginTop: "10px" }}>
-          <source src={previewUrl} type="audio/mpeg" />
-          Your browser does not support the audio element.
-        </audio>
+        {previewUrl ? (
+          <audio controls style={{ marginTop: "10px" }}>
+            <source src={previewUrl} type="audio/mpeg" />
+          </audio>
+        ) : null}
       </Card.Body>
     </Card>
   );
