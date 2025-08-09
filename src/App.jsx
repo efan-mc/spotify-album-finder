@@ -12,6 +12,7 @@ function App() {
   const [searchInput, setSearchInput] = useState("");
   const [accessToken, setAccessToken] = useState("");
   const [artistInfo, setArtistInfo] = useState("");
+  const [previewUrl, setPreviewUrl] = useState("");
   const [albums, setAlbums] = useState([]);
 
   useEffect(() => {
@@ -56,6 +57,18 @@ function App() {
     setArtistInfo(artistData);
     const artistID = artistData.id;
 
+    // Get Top Tracks
+    const topTracks = await fetch(
+      `https://api.spotify.com/v1/artists/${artistID}/top-tracks?market=US`,
+      artistParams
+    ).then((result) => result.json());
+
+    console.log(topTracks.tracks);
+
+    if (topTracks.tracks.length > 0) {
+      setPreviewUrl(topTracks.tracks[0].preview_url);
+    }
+
     // Get Artist Albums
     await fetch(
       "https://api.spotify.com/v1/artists/" +
@@ -79,7 +92,7 @@ function App() {
         />
       </Container>
       <Container>
-        <ArtistInfo artist={artistInfo} />
+        <ArtistInfo artist={artistInfo} previewUrl={previewUrl} />
         <AlbumGrid albums={albums} />
       </Container>
     </>

@@ -1,6 +1,6 @@
 import { Card, Button, CardBody } from "react-bootstrap";
 
-export default function ArtistInfo({ artist }) {
+export default function ArtistInfo({ artist, previewUrl }) {
   if (!artist) {
     return null;
   }
@@ -52,6 +52,11 @@ export default function ArtistInfo({ artist }) {
           <b>Genres: </b>
           {artist.genres}
         </Card.Text>
+
+        <audio controls style={{ marginTop: "10px" }}>
+          <source src={previewUrl} type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
       </Card.Body>
     </Card>
   );
