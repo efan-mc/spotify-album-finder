@@ -17,6 +17,7 @@ function App() {
   const [topTracks, setTopTracks] = useState([]);
   const [albums, setAlbums] = useState([]);
 
+  // Request Spotify API access token
   useEffect(() => {
     let authParams = {
       method: "POST",
@@ -30,6 +31,7 @@ function App() {
         clientSecret,
     };
 
+    // Stores token in st
     fetch("https://accounts.spotify.com/api/token", authParams)
       .then((result) => result.json())
       .then((data) => {
@@ -38,6 +40,7 @@ function App() {
   }, []);
 
   async function search() {
+    // Set common request header
     let artistParams = {
       method: "GET",
       headers: {
@@ -46,17 +49,18 @@ function App() {
       },
     };
 
-    // Get Artist
+    // Search for Artist
     const artistData = await fetch(
       "https://api.spotify.com/v1/search?q=" + searchInput + "&type=artist",
       artistParams
     )
       .then((result) => result.json())
       .then((data) => {
-        return data.artists.items[0];
+        return data.artists.items[0]; // Returns first matching artist
       });
 
     setArtistInfo(artistData);
+    // Store ID for further use
     const artistID = artistData.id;
 
     // Get Artist Albums
@@ -68,7 +72,7 @@ function App() {
     )
       .then((result) => result.json())
       .then((data) => {
-        setAlbums(data.items);
+        setAlbums(data.items); // Stores albums as list
       });
 
     // Get Artists Top Tracks
@@ -79,11 +83,12 @@ function App() {
       artistParams
     ).then((result) => result.json());
 
-    setTopTracks(topTracksData.tracks || []);
+    setTopTracks(topTracksData.tracks || []); // Stores in state
   }
 
   return (
     <>
+      {/* Title section that dissapears when user types */}
       <Container>
         <InsertTitle visible={!searchInput.trim()} />
       </Container>
@@ -94,6 +99,7 @@ function App() {
           onSearch={search}
         />
       </Container>
+      {/* Main content: artist, album and top tracks */}
       <Container>
         <ArtistInfo artist={artistInfo} />
         <AlbumGrid albums={albums} />

@@ -1,5 +1,4 @@
 import { Card, Button } from "react-bootstrap";
-import TopTracks from "./TopTracks";
 
 export default function TopTracksCard({ track }) {
   return (
