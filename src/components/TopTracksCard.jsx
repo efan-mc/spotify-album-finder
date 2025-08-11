@@ -1,15 +1,19 @@
 import { Card, Button } from "react-bootstrap";
 import TopTracks from "./TopTracks";
 
-export default function TopTracksCard({ track, index }) {
+export default function TopTracksCard({ track }) {
   return (
     <Card
       key={track.id}
       style={{
-        backgroundColor: "white",
+        background: "rgba(255,255,255,0.05)",
+        backdropFilter: "blur(10px)",
+        border: "1px solid rgba(255,255,255,0.1)",
+        borderRadius: "12px",
+        boxShadow: "0 6px 18px rgba(0,0,0,0.18)",
         margin: "10px",
-        borderRadius: "5px",
         marginBottom: "30px",
+        transition: "background-color 0.2s ease, transform 0.2s ease",
       }}
     >
       <Card.Img
@@ -27,26 +31,19 @@ export default function TopTracksCard({ track, index }) {
             maxWidth: "200px",
             fontSize: "18px",
             marginTop: "10px",
-            color: "black",
             marginBottom: "12px",
           }}
         >
           {track.name}
         </Card.Title>
-        <Card.Text
-          style={{
-            color: "black",
-          }}
-        >
-          {track.album.name}
-        </Card.Text>
+        <Card.Text>{track.album.name}</Card.Text>
         <Button
           href={track.external_urls.spotify}
           style={{
             backgroundColor: "black",
             color: "white",
             fontWeight: "bold",
-            fontSize: "15px",
+            fontSize: "13px",
             borderRadius: "5px",
             padding: "10px",
           }}

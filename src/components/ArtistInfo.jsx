@@ -1,6 +1,6 @@
 import { Card, Button, CardBody } from "react-bootstrap";
 
-export default function ArtistInfo({ artist, previewUrl }) {
+export default function ArtistInfo({ artist }) {
   if (!artist) {
     return null;
   }
@@ -8,6 +8,12 @@ export default function ArtistInfo({ artist, previewUrl }) {
   return (
     <Card
       style={{
+        background: "rgba(255,255,255,0.05)",
+        backdropFilter: "blur(10px)",
+        border: "1px solid rgba(255,255,255,0.1)",
+        boxShadow: "0 6px 18px rgba(0,0,0,0.18)",
+        transition: "background-color 0.2s ease, transform 0.2s ease",
+
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
@@ -30,7 +36,6 @@ export default function ArtistInfo({ artist, previewUrl }) {
       <Card.Body
         style={{
           fontSize: "24px",
-          color: "black",
         }}
       >
         <Card.Title>{artist.name}</Card.Title>
@@ -52,12 +57,6 @@ export default function ArtistInfo({ artist, previewUrl }) {
           <b>Genres: </b>
           {artist.genres}
         </Card.Text>
-
-        {previewUrl ? (
-          <audio controls style={{ marginTop: "10px" }}>
-            <source src={previewUrl} type="audio/mpeg" />
-          </audio>
-        ) : null}
       </Card.Body>
     </Card>
   );

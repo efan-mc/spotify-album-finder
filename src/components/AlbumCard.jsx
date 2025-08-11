@@ -5,10 +5,14 @@ export default function AlbumCard({ album }) {
     <Card
       key={album.id}
       style={{
-        backgroundColor: "white",
+        background: "rgba(255,255,255,0.05)",
+        backdropFilter: "blur(10px)",
+        border: "1px solid rgba(255,255,255,0.1)",
+        borderRadius: "12px",
+        boxShadow: "0 6px 18px rgba(0,0,0,0.18)",
         margin: "10px",
-        borderRadius: "5px",
         marginBottom: "30px",
+        transition: "background-color 0.2s ease, transform 0.2s ease",
       }}
     >
       <Card.Img
@@ -26,16 +30,11 @@ export default function AlbumCard({ album }) {
             maxWidth: "200px",
             fontSize: "18px",
             marginTop: "10px",
-            color: "black",
           }}
         >
           {album.name}
         </Card.Title>
-        <Card.Text
-          style={{
-            color: "black",
-          }}
-        >
+        <Card.Text>
           Release Date: <br /> {album.release_date}
         </Card.Text>
         <Button
