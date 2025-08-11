@@ -1,6 +1,10 @@
 import { Card, Button } from "react-bootstrap";
 
 export default function TopTracksCard({ track }) {
+  if (!track) {
+    return null;
+  }
+
   return (
     <Card
       key={track.id}
