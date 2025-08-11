@@ -5,6 +5,17 @@ export default function ArtistInfo({ artist }) {
     return null;
   }
 
+  const capitalizeGenre = (genre) => {
+    return genre
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
+
+  const formattedGenres = artist.genres
+    .map((genre) => capitalizeGenre(genre))
+    .join(", ");
+
   return (
     <Card
       style={{
@@ -13,11 +24,9 @@ export default function ArtistInfo({ artist }) {
         border: "1px solid rgba(255,255,255,0.1)",
         boxShadow: "0 6px 18px rgba(0,0,0,0.18)",
         transition: "background-color 0.2s ease, transform 0.2s ease",
-
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
-        backgroundColor: "white",
         borderRadius: "5px",
         marginTop: "30px",
         marginBottom: "30px",
@@ -49,14 +58,14 @@ export default function ArtistInfo({ artist }) {
           {artist.followers.total.toLocaleString()}
         </Card.Text>
 
-        <Card.Text
+        <div
           style={{
             fontSize: "20px",
           }}
         >
           <b>Genres: </b>
-          {artist.genres}
-        </Card.Text>
+          {formattedGenres}
+        </div>
       </Card.Body>
     </Card>
   );
