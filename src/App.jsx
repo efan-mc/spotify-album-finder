@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import SearchBar from "./components/SearchBar";
 import AlbumGrid from "./components/AlbumGrid";
 import ArtistInfo from "./components/ArtistInfo";
+import TopTracks from "./components/TopTracks";
 
 const clientId = import.meta.env.VITE_CLIENT_ID;
 const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
@@ -12,7 +13,7 @@ function App() {
   const [searchInput, setSearchInput] = useState("");
   const [accessToken, setAccessToken] = useState("");
   const [artistInfo, setArtistInfo] = useState("");
-  const [previewUrl, setPreviewUrl] = useState("");
+  const [topTracks, setTopTracks] = useState([]);
   const [albums, setAlbums] = useState([]);
 
   useEffect(() => {
@@ -57,19 +58,6 @@ function App() {
     setArtistInfo(artistData);
     const artistID = artistData.id;
 
-    // Get Top Tracks
-    const topTracks = await fetch(
-      `https://api.spotify.com/v1/artists/${artistID}/top-tracks?country=US`,
-      artistParams
-    ).then((result) => result.json());
-
-    console.log(topTracks.tracks);
-
-    if (topTracks.tracks.length > 0) {
-      const withPreview = topTracks.tracks.find((t) => t.preview_url);
-      setPreviewUrl(withPreview ? withPreview.preview_url : "");
-    }
-
     // Get Artist Albums
     await fetch(
       "https://api.spotify.com/v1/artists/" +
@@ -81,6 +69,16 @@ function App() {
       .then((data) => {
         setAlbums(data.items);
       });
+
+    // Get Artists Top Tracks
+    const topTracksData = await fetch(
+      "https://api.spotify.com/v1/artists/" +
+        artistID +
+        "/top-tracks?market=US",
+      artistParams
+    ).then((result) => result.json());
+
+    setTopTracks(topTracksData.tracks || []);
   }
 
   return (
@@ -93,8 +91,9 @@ function App() {
         />
       </Container>
       <Container>
-        <ArtistInfo artist={artistInfo} previewUrl={previewUrl} />
+        <ArtistInfo artist={artistInfo} />
         <AlbumGrid albums={albums} />
+        <TopTracks tracks={topTracks} />
       </Container>
     </>
   );
