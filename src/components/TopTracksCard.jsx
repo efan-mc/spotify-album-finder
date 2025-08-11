@@ -28,10 +28,18 @@ export default function TopTracksCard({ track, index }) {
             fontSize: "18px",
             marginTop: "10px",
             color: "black",
+            marginBottom: "12px",
           }}
         >
           {track.name}
         </Card.Title>
+        <Card.Text
+          style={{
+            color: "black",
+          }}
+        >
+          {track.album.name}
+        </Card.Text>
         <Button
           href={track.external_urls.spotify}
           style={{

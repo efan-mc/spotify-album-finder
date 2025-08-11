@@ -5,6 +5,7 @@ import SearchBar from "./components/SearchBar";
 import AlbumGrid from "./components/AlbumGrid";
 import ArtistInfo from "./components/ArtistInfo";
 import TopTracks from "./components/TopTracks";
+import InsertTitle from "./components/InsertTitle";
 
 const clientId = import.meta.env.VITE_CLIENT_ID;
 const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
@@ -83,6 +84,9 @@ function App() {
 
   return (
     <>
+      <Container>
+        <InsertTitle visible={!searchInput.trim()} />
+      </Container>
       <Container>
         <SearchBar
           searchInput={searchInput}
