@@ -3,7 +3,7 @@
 > **Note:** This project is a fork/clone based on the work by [exrlla](https://github.com/exrlla) and inspired by the ["Build an Album Finder with the Spotify API"](https://www.codedex.io/projects/build-an-album-finder-with-spotify-api) project on Codedex. I have modified and extended it with additional features, styling changes, and UI improvements.
 
 
-##🌍 Deployment
+## 🌍 Deployment
 
 Deployed with Vercel
 
