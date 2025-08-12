@@ -31,5 +31,5 @@ Albums
 
 ## 🛠 Furture Plans
 
--Add related artists section
--Play preview track
+- Add related artists section
+- Play preview track
